@@ -8,14 +8,10 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
     println("=== SISTEMA DE GESTIÓN PLAYFLIX ===")
-
-    // Ejecución de la tarea asíncrona
     conectarServidorPlayFlix()
 
-    // Manejo de Colecciones
     val catalogo: MutableList<Contenido> = mutableListOf()
 
-    // Manejo de Excepciones (try-catch) al registrar elementos
     try {
         catalogo.add(Pelicula("Inception", "Ciencia Ficción", 148, 4.99, es4K = true))
         catalogo.add(Serie("Stranger Things", "Terror/Misterio", 50, 2.99, temporadas = 4))
@@ -25,15 +21,13 @@ fun main() = runBlocking {
         println("Error al agregar contenido al catálogo: ${e.message}")
     }
 
-    // Despliegue de información en consola
     println("--- CATÁLOGO COMPLETO ---")
     for (item in catalogo) {
         println(item.obtenerDetalles())
     }
 
-    // Programación Funcional
     println("\n--- MÉTRICAS Y ANÁLISIS DE DATOS ---")
-    
+
     val cienciaFiccion = catalogo.filter { it.genero.contains("Ciencia Ficción", ignoreCase = true) }
     println("\nContenido categorizado en 'Ciencia Ficción':")
     cienciaFiccion.forEach { println(" - ${it.titulo} (${it.duracionMinutos} min)") }
